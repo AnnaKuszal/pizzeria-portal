@@ -1,3 +1,13 @@
+# Development
+
+## URLe dostępne dzięki yarn start
+http://localhost:3000 - bieżący projekt, czyli panel administracyjny 'webpack-dev-server' 
+http://localhost:3131 - strona pizzerii dla klientów 
+http://localhost:3131/api - API projektu 
+http://localhost:3131/api/db - podgląd całej bazy danych w API 
+http://localhost:3131/panel - stan bieżącego projektu z momentu uruchomienia 'yarn start'
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -66,3 +76,4 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `yarn build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
