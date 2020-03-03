@@ -14,11 +14,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Box from '@material-ui/core/Box';
 
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
+import OrderDetails from './OrderDetails';
 
 const demoProducts = [
   {id: 'cake', name: 'Zio Stefano\'s Doughnut', price: 9, 
@@ -85,35 +81,6 @@ const demoProducts = [
   },
 ];
 
-const demoOrder = [
-  {id: 'cake', name: 'Zio Stefano\'s Doughnut', value: 18, 
-    options: [],
-    quantity: 2,
-  },
-  {
-    id: 'breakfast',
-    name: 'Zia Giulia\'s Breakfast',
-    value: 18,
-    options: [],
-    quantity: 2,
-  },
-  {
-    id: 'coffee', name: 'Coffee', value: 2,
-    options: ['latte', 'cappuccino'],
-    quantity: 2,
-  },
-
-  { 
-    id: 'pizza', 
-    name: 'Nonna Alba\'s Pizza',
-    value: 26,
-    type: 'checkboxes',
-    options: ['olives', 'redPeppers', 'mushrooms'],
-    quantity: 1,
-  },
-];
-    
-
 const OrderId = ({match}) => {
 
   const [setValue] = React.useState('');   //value, 
@@ -129,7 +96,6 @@ const OrderId = ({match}) => {
   const handleCheckboxChange = name => event => {
     setState({ ...state, [name]: event.target.checked });
   };
-
 
   return (
     <Paper className={styles.component}>
@@ -171,17 +137,11 @@ const OrderId = ({match}) => {
                       <Typography >{row.price}$</Typography>
 
                       {Object.keys(row.options).map(f => {
-
                         const final = row.options[f];
-
                         const valuesArray = Object.values(final);
-
                         const qtyIdName = `${row.id}${valuesArray[0]}`;
-
-                        const details = valuesArray.map((detail, j) => {
-            
-                          return (<span key={j} value={detail}>{valuesArray[j]} </span>);
-                            
+                        const details = valuesArray.map((detail, j) => {         
+                          return (<span key={j} value={detail}>{valuesArray[j]} </span>);  
                         });
         
                         return (
@@ -211,7 +171,6 @@ const OrderId = ({match}) => {
                             />
                           </Box>
                         );  
-
                       })}
                     </Card>
                   </Grid>
@@ -221,46 +180,11 @@ const OrderId = ({match}) => {
             </Grid>
 
             <Grid item xs={12} lg={7}>
-              <Card>
-                <Typography>ORDER DETAILS:</Typography>
-                <Table>
-                  <TableHead>
-                    <TableRow>
-                      <TableCell>Dishes</TableCell>
-                      <TableCell>Options</TableCell>
-                      <TableCell>Quantity</TableCell>
-                      <TableCell>Value</TableCell>
-                    </TableRow>
-                  </TableHead>
-
-                  <TableBody>
-                    {demoOrder.map(row => (
-                      <TableRow key={row.id}>
-                        <TableCell component="th" scope="row">
-                          {row.name}
-                        </TableCell>
-                        <TableCell>
-                          {row.options.map(option => (
-                            <div key={option}>{option}</div>
-                          ))}
-                        </TableCell>
-                        <TableCell>
-                          {row.quantity}
-                        </TableCell>
-                        <TableCell>
-                          {row.value}
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-
-              </Card>
+              <OrderDetails />   
             </Grid>
 
           </Grid>
         </Grid>
-
       </Grid>
     </Paper>
   );
